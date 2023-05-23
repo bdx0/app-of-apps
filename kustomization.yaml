@@ -4,6 +4,4 @@ kind: Kustomization
 namespace: aoa
 
 resources:
-- namespace.yaml
-- root.yaml
-- argo-cd.yaml
+- apps
