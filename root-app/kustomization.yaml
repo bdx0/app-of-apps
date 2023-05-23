@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: aoa
 
 resources:
-- root.yaml
+- https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
