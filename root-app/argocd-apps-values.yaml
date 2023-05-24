@@ -14,8 +14,8 @@ applications:
     path: apps/
     repoURL: https://github.com/bdx0/app-of-apps.git
     targetRevision: HEAD
-    kustomize:
-      enableHelm: true
+    kustomize: {}
+      # enableHelm: true
   syncPolicy:
     automated:
       prune: true

@@ -11,6 +11,13 @@ resources:
 - ingress.yaml
 # - argocd-cm.yaml
 
+# configMapGenerator:
+# - name: argocd-cm
+#   behavior: merge
+#   namespace: argocd
+#   literals:
+#   - kustomize.buildOptions="--enable-alpha-plugins --enable-helm"
+
 helmCharts:
   - name: argo-cd
     includeCRDs: true
