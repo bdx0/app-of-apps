@@ -5,7 +5,15 @@ namespace: argocd
 
 resources:
 - namespace.yaml
-- https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+# - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 # - https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.1/deploy/static/provider/baremetal/deploy.yaml
 # - https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.yaml
 - ingress.yaml
+
+helmCharts:
+  - name: argo-cd
+    includeCRDs: true
+    releaseName: arogcd
+    version: 4.2.2
+    repo: https://argoproj.github.io/argo-helm
+    valuesFile: values.yaml
