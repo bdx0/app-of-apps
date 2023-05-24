@@ -7,4 +7,4 @@ resources:
 - namespace.yaml
 - app-root.yaml
 - app-argo-cd.yaml
-- app-prometheus.yaml
+# - app-prometheus.yaml
