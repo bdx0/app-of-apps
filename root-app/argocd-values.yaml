@@ -1,0 +1,16 @@
+dex:
+  enabled: true
+server:
+  # extraArgs:
+    # - --insecure
+  service:
+      type: NodePort
+  configEnabled: true
+  config:
+    repositories: |
+      - type: helm
+        name: argo-cd
+        url: https://argoproj.github.io/argo-helm
+      - type: git
+        name: app-of-apps
+        url: https://github.com/bdx0/app-of-apps.git

@@ -1,0 +1,53 @@
+applications:
+  - name: root-app
+    namespace: argocd
+    additionalLabels: {}
+    additionalAnnotations:
+      "helm.sh/resource-policy": keep # <-- add this
+    finalizers:
+    - resources-finalizer.argocd.argoproj.io
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: default
+    project: default
+    source:
+      path: apps/
+      repoURL: https://github.com/bdx0/app-of-apps.git
+      targetRevision: HEAD
+      kustomize:
+        enableHelm: true
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+        allowEmpty: true
+      syncOptions:
+      - PruneLast=true
+      - CreateNamespace=true
+      - Validate=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - ApplyOutOfSync=true
+  # - name: argocd
+  #   destination:
+  #     server: https://kubernetes.default.svc
+  #     namespace: argocd
+  #   project: default
+  #   source:
+  #     path: root-app/
+  #     repoURL: https://github.com/bdx0/app-of-apps.git
+  #     targetRevision: HEAD
+  #     kustomize:
+  #       enableHelm: true
+  #   syncPolicy:
+  #     automated:
+  #       prune: true
+  #       selfHeal: true
+  #       allowEmpty: true
+  #     syncOptions:
+  #     - PruneLast=true
+  #     - CreateNamespace=true
+  #     - Validate=true
+  #     - PrunePropagationPolicy=foreground
+  #     - PruneLast=true
+  #     - ApplyOutOfSync=true

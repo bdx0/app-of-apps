@@ -23,6 +23,8 @@ runcmd:
    # printf "network:\n version: 2\n renderer: networkd\n ethernets:\n  $IF:\n    addresses:\n     - $NET.$IP/24" | tee /etc/netplan/90-static.yaml
    #  netplan apply
    # install and start microk8s
+   apt update --fix-missing
+   snap refresh
    snap install microk8s --classic
    ufw allow in on cni0 && sudo ufw allow out on cni0
    ufw default allow routed
