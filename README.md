@@ -2,5 +2,5 @@
 
 ```shell
 # bootstrap
-kubectl apply -k https://github.com/bdx0/app-of-apps
+kubectl kustomize --enable-helm https://github.com/bdx0/app-of-apps | kubectl apply -f -
 ```
