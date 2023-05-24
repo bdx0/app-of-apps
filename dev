@@ -1,0 +1,24 @@
+#!/bin/sh
+
+NAME=localdev
+
+multipass delete --all --purge -vv
+multipass launch -m 4G -d 10G -c 2 -n $NAME --cloud-init cloud-init.yaml -vv
+multipass exec $NAME -- sudo cloud-init status --wait
+# multipass exec $NAME -- sudo apt update
+# multipass exec $NAME -- sudo apt install -y avahi-daemon
+# multipass exec $NAME -- sudo snap install microk8s --classic --channel=1.18/stable
+# multipass exec $NAME -- sudo microk8s status --wait-ready
+multipass exec $NAME -- sudo usermod -a -G microk8s ubuntu
+multipass exec $NAME -- sudo chown -f -R ubuntu ~/.kube
+# multipass exec $NAME -- echo '192.168.64.100-192.168.64.150' | sudo microk8s enable dns ingress registry
+# multipass exec $NAME -- sudo microk8s enable dns ingress registry
+multipass exec $NAME -- sudo microk8s status --wait-ready
+multipass exec $NAME -- sudo microk8s config view > ~/.kube/config
+sleep 10
+multipass list
+kubectl apply -k .
+sleep 15
+# kubectl -n argocd wait --for=condition=complete pods -l
+# while [[ $(kubectl get pods -l app=hello -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo "waiting for pod" && sleep 1; done
+sh grant_access
