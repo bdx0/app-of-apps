@@ -11,8 +11,8 @@ spec:
     namespace: argocd
   project: default
   source:
-    path: charts/argo-cd
-    repoURL: https://github.com/arthurk/argocd-example-install.git
+    path: root-app/
+    repoURL: https://github.com/bdx0/app-of-apps.git
     targetRevision: HEAD
   syncPolicy:
     automated:
