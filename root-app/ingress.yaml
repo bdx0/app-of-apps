@@ -37,17 +37,17 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-  - host: argocd.localdev.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: argocd-server
-            port:
-              name: https
+    - host: argocd.localdev.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argo-cd-argocd-server
+                port:
+                  name: https
   tls:
-  - hosts:
-    - argocd.localdev.local
-    secretName: argocd-secret # do not change, this is provided by Argo CD
+    - hosts:
+        - argocd.localdev.local
+      secretName: argocd-secret # do not change, this is provided by Argo CD
