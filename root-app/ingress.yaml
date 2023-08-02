@@ -47,7 +47,29 @@ spec:
                 name: argo-cd-argocd-server
                 port:
                   name: https
+    - host: argocd.bobo.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argo-cd-argocd-server
+                port:
+                  name: https
+    - host: argocd.ddbt.duckdns.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argo-cd-argocd-server
+                port:
+                  name: https
   tls:
     - hosts:
         - argocd.localdev.local
+        - argocd.bobo.local
+        - argocd.ddbt.duckdns.org
       secretName: argocd-secret # do not change, this is provided by Argo CD
