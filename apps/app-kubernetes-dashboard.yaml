@@ -13,7 +13,6 @@ spec:
   sources:
     - repoURL: https://github.com/bdx0/app-of-apps.git
       targetRevision: HEAD
-      path: apps/values/
       ref: values
     - repoURL: https://kubernetes.github.io/dashboard/
       targetRevision: 7.0.3
@@ -21,7 +20,7 @@ spec:
       helm:
         ignoreMissingValueFiles: true
         valuesFiles:
-          - $values/kubernetes-dashboard-values.yaml
+          - $values/apps/values/kubernetes-dashboard-values.yaml
   syncPolicy:
     automated:
       prune: true
