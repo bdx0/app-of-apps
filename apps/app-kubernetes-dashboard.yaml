@@ -10,17 +10,18 @@ spec:
     server: https://kubernetes.default.svc
     namespace: kubernetes-dashboard
   project: default
-  source:
-    repoURL: https://github.com/bdx0/app-of-apps.git
-    targetRevision: HEAD
-    path: apps/values/
-    helm:
-      ignoreMissingValueFiles: true
-      valuesFiles:
-        - kubernetes-dashboard-values.yaml
-      repoURL: https://kubernetes.github.io/dashboard/
+  sources:
+    - repoURL: https://github.com/bdx0/app-of-apps.git
+      targetRevision: HEAD
+      path: apps/values/
+      ref: values
+    - repoURL: https://kubernetes.github.io/dashboard/
       targetRevision: 7.0.3
       chart: kubernetes-dashboard
+      helm:
+        ignoreMissingValueFiles: true
+        valuesFiles:
+          - $values/kubernetes-dashboard-values.yaml
   syncPolicy:
     automated:
       prune: true
