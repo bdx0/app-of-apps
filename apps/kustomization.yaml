@@ -14,7 +14,7 @@ resources:
 helmCharts:
   - name: kubernetes-dashboard
     includeCRDs: true
-    releaseName: kubernetes-dashboard/kubernetes-dashboard
+    releaseName: kubernetes-dashboard
     # version: 4.2.2
     repo: https://kubernetes.github.io/dashboard/
     valuesFile: kubernetes-dashboard-values.yaml
