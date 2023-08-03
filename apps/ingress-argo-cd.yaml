@@ -1,7 +1,29 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: argocd-server-ingress
+#   namespace: argocd
+#   annotations:
+#     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+# spec:
+#   ingressClassName: "nginx"
+#   rules:
+#   - host: localhost
+#     http:
+#       paths:
+#       - path: /argocd
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: argocd-server
+#             port:
+#               name: https
+# ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: k8s-dashboard-server-ingress
+  name: argocd-server-ingress
   namespace: argocd
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
@@ -15,39 +37,39 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-    - host: dashboard.localdev.local
+    - host: argocd.localdev.local
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: kubenetes-dashboard
+                name: argo-cd-argocd-server
                 port:
                   name: https
-    - host: dashboard.bobo.local
+    - host: argocd.bobo.local
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: kubenetes-dashboard
+                name: argo-cd-argocd-server
                 port:
                   name: https
-    - host: dashboard.ddbt.duckdns.org
+    - host: argocd.ddbt.duckdns.org
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: kubenetes-dashboard
+                name: argo-cd-argocd-server
                 port:
                   name: https
   tls:
     - hosts:
-        - dashboard.localdev.local
-        - dashboard.bobo.local
-        - dashboard.ddbt.duckdns.org
-      secretName: k8s-dashboard-secret # do not change, this is provided by Argo CD
+        - argocd.localdev.local
+        - argocd.bobo.local
+        - argocd.ddbt.duckdns.org
+      secretName: argocd-secret # do not change, this is provided by Argo CD
