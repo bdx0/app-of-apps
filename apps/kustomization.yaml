@@ -11,6 +11,7 @@ resources:
   - app-prometheus.yaml
   # - ingress-k8s-dashboard.yaml
   - ingress-argo-cd.yaml
+  - dashboard-admin.yaml
 # helmCharts:
 #   - name: kubernetes-dashboard
 #     includeCRDs: true
