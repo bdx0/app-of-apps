@@ -6,6 +6,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   # - app-root.yaml
+  - app-kubernetes-dashboard.yaml
   - app-argo-cd.yaml
   - app-prometheus.yaml
   - ingress-k8s-dashboard.yaml
