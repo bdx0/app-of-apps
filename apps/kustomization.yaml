@@ -10,3 +10,11 @@ resources:
   - app-prometheus.yaml
   - ingress-k8s-dashboard.yaml
   - ingress-argo-cd.yaml
+
+helmCharts:
+  - name: kubernetes-dashboard
+    includeCRDs: true
+    releaseName: kubernetes-dashboard/kubernetes-dashboard
+    # version: 4.2.2
+    repo: https://kubernetes.github.io/dashboard/
+    valuesFile: kubernetes-dashboard-values.yaml
