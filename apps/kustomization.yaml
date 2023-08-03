@@ -4,7 +4,9 @@ kind: Kustomization
 # namespace: aoa
 
 resources:
-- namespace.yaml
-# - app-root.yaml
-- app-argo-cd.yaml
-- app-prometheus.yaml
+  - namespace.yaml
+  # - app-root.yaml
+  - app-argo-cd.yaml
+  - app-prometheus.yaml
+  - ingress-k8s-dashboard.yaml
+  - ingress-argo-cd.yaml
