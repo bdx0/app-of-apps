@@ -11,9 +11,6 @@ spec:
     namespace: kubernetes-dashboard
   project: default
   sources:
-    - repoURL: https://github.com/bdx0/app-of-apps.git
-      targetRevision: HEAD
-      ref: values
     - repoURL: https://kubernetes.github.io/dashboard/
       targetRevision: 7.0.3
       chart: kubernetes-dashboard
@@ -21,6 +18,9 @@ spec:
         ignoreMissingValueFiles: true
         valuesFiles:
           - $values/apps/values/kubernetes-dashboard-values.yaml
+    - repoURL: https://github.com/bdx0/app-of-apps.git
+      targetRevision: HEAD
+      ref: values
   syncPolicy:
     automated:
       prune: true
