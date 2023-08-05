@@ -21,7 +21,7 @@ spec:
     # - repoURL: https://github.com/bdx0/k8s_kuz_wp.git
     - repoURL: git@github.com:bdx0/k8s_kuz_wp.git
       targetRevision: HEAD
-      path: manifests
+      path: manifests/
       kustomize:
         enableHelm: true
   syncPolicy:
