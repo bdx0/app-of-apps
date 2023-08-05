@@ -18,7 +18,8 @@ spec:
     #     ignoreMissingValueFiles: true
     #     valueFiles:
     #       - $values/apps/values/kubernetes-dashboard-values.yaml
-    - repoURL: https://github.com/bdx0/k8s_kuz_wp.git
+    # - repoURL: https://github.com/bdx0/k8s_kuz_wp.git
+    - repoURL: git@github.com:bdx0/k8s_kuz_wp.git
       targetRevision: HEAD
       path: manifests
       kustomize:
