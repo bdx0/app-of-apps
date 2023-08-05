@@ -22,8 +22,8 @@ spec:
     - repoURL: git@github.com:bdx0/k8s_kuz_wp.git
       targetRevision: HEAD
       path: manifests/
-      kustomize:
-        enableHelm: true
+      # kustomize:
+      # enableHelm: true
   syncPolicy:
     automated:
       prune: true
