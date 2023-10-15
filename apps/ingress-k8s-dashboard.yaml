@@ -18,7 +18,7 @@ metadata:
 spec:
   # ingressClassName: "nginx"
   rules:
-    - host: dashboard.localdev.local
+    - host: dashboard.lina.local
       http:
         paths:
           - path: /
@@ -28,7 +28,7 @@ spec:
                 name: kubernetes-dashboard
                 port:
                   name: https
-    - host: dashboard.bobo.local
+    - host: dashboard.ddbt.io.vn
       http:
         paths:
           - path: /
@@ -50,7 +50,7 @@ spec:
                   name: https
   tls:
     - hosts:
-        - dashboard.localdev.local
-        - dashboard.bobo.local
+        - dashboard.lina.local
+        - dashboard.ddbt.io.vn
         - dashboard.ddbt.duckdns.org
       secretName: k8s-dashboard-secret # do not change, this is provided by Argo CD

@@ -81,8 +81,8 @@ app:
       # Keep 'localhost' host only if you want to access Dashboard using 'kubectl port-forward ...' on:
       # https://localhost:8443
       - localhost
-      - mira.local
-      - k8s.dashboard.ddbt.duckdns.org
+      - dashboard.ddbt.io.vn
+      - dashboard.lina.local
       - dashboard.ddbt.duckdns.org
     # - kubernetes.dashboard.domain.com
     ingressClassName: nginx
