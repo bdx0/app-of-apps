@@ -2,13 +2,13 @@ dex:
   enabled: true
 server:
   # extraArgs:
-    # - --insecure
+  # - --insecure
   service:
-      type: NodePort
+    type: LoadBalancer
   configEnabled: true
   config:
     # kustomize.buildOptions: --enable-alpha-plugins --enable-helm"
-    kustomize.buildOptions: --enable-helm
+    kustomize.buildOptions: --enable-alpha-plugins --enable-helm
     repositories: |
       - type: helm
         name: argo-cd
