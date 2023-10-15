@@ -10,7 +10,7 @@ resources:
   - app-argo-cd.yaml
   - app-prometheus.yaml
   # - ingress-k8s-dashboard.yaml
-  - ingress-argo-cd.yaml
+  # - ingress-argo-cd.yaml
   - dashboard-admin.yaml
   - app-wordpress.yaml
 # helmCharts:
