@@ -83,6 +83,7 @@ app:
       - localhost
       - mira.local
       - k8s.dashboard.ddbt.duckdns.org
+      - dashboard.ddbt.duckdns.org
     # - kubernetes.dashboard.domain.com
     ingressClassName: nginx
     pathType: ImplementationSpecific
