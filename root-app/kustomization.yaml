@@ -25,12 +25,12 @@ helmCharts:
   - name: argo-cd
     includeCRDs: true
     releaseName: argo-cd
-    version: 4.2.2
+    # version: 4.2.2
     repo: https://argoproj.github.io/argo-helm
     valuesFile: argocd-values.yaml
   - name: argocd-apps
     includeCRDs: true
     releaseName: argocd-apps
-    version: 4.2.2
+    # version: 4.2.2
     repo: https://argoproj.github.io/argo-helm
     valuesFile: argocd-apps-values.yaml
