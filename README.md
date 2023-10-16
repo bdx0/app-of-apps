@@ -40,3 +40,5 @@ kubectl kustomize --enable-helm https://github.com/bdx0/app-of-apps | kubectl ap
 - install rook
 - install gitlab
 - install jenkins
+- install spark
+- install hadoop
