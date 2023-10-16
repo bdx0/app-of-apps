@@ -12,7 +12,8 @@ resources:
   # - ingress-k8s-dashboard.yaml
   # - ingress-argo-cd.yaml
   - dashboard-admin.yaml
-  # - app-wordpress.yaml
+  - app-wordpress.yaml
+  - ingress-dev-vm.yaml
 # helmCharts:
 #   - name: kubernetes-dashboard
 #     includeCRDs: true
