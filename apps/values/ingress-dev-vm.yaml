@@ -1,0 +1,94 @@
+# https://www.kristhecodingunicorn.com/post/k8s_proxy_svc/
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxy-service
+  namespace: argocd
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+      name: http
+    - port: 443
+      protocol: TCP
+      targetPort: 8443
+      name: https
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxy-service-externalname
+  namespace: argocd
+spec:
+  type: ExternalName
+  externalName: dev.local # Provide the FQDN of the external service you want to proxy requests to
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: proxy-service # Must be equal to Service name for automatic mapping
+  namespace: argocd
+subsets:
+  - addresses:
+      - ip: 192.168.122.246 # IP address of your external service that you would like to proxy requests to
+    ports:
+      - name: http
+        port: 8080
+      - name: https
+        port: 8443
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dev-vm-ingress
+  namespace: argocd
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    # If you encounter a redirect loop or are getting a 307 response code
+    # then you need to force the nginx ingress to connect to the backend using HTTPS.
+    #
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: "nginx"
+  rules:
+    - host: dev.lina.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: proxy-service
+                port:
+                  number: 80
+
+    - host: dev.ddbt.io.vn
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: proxy-service
+                port:
+                  number: 80
+    - host: dev.ddbt.duckdns.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: proxy-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - dev.lina.local
+        - dev.ddbt.io.vn
+        - dev.ddbt.duckdns.org
+      secretName: devvm-secret # do not change, this is provided by Argo CD

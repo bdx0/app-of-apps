@@ -85,7 +85,7 @@ app:
       - dashboard.lina.local
       - dashboard.ddbt.duckdns.org
     # - kubernetes.dashboard.domain.com
-    ingressClassName: nginx
+    ingressClassName: "nginx"
     pathType: ImplementationSpecific
     secretName: kubernetes-dashboard-certs
     issuer:
@@ -321,7 +321,7 @@ extras:
   clusterReadOnlyRoleAdditionalRules: []
   serviceMonitor:
     # Whether to create a Prometheus Operator service monitor.
-    enabled: false
+    enabled: true
     # Here labels can be added to the serviceMonitor
     labels: {}
     # Here annotations can be added to the serviceMonitor

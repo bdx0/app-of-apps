@@ -6,3 +6,6 @@
 kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 echo ""
 # kubectl port-forward -n argocd svc/argocd-server 8080:443
+
+# kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get serviceaccount admin-user -o jsonpath="{.secrets[0].name}") -o jsonpath="{.data.token}" | base64 --decode
+kubectl -n kubernetes-dashboard get secret admin-user -o jsonpath="{.data.token}" | base64 --decode | pbcopy
