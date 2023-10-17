@@ -37,7 +37,7 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-    - host: argocd.lina.local
+    - host: argocd.lina.home.local
       http:
         paths:
           - path: /
@@ -47,7 +47,7 @@ spec:
                 name: argo-cd-argocd-server
                 port:
                   name: https
-    - host: argocd.ddbt.io.vn
+    - host: argocd.bdx0.io.vn
       http:
         paths:
           - path: /
@@ -69,7 +69,7 @@ spec:
                   name: https
   tls:
     - hosts:
-        - argocd.lina.local
-        - argocd.ddbt.io.vn
+        - argocd.lina.home.local
+        - argocd.bdx0.io.vn
         - argocd.ddbt.duckdns.org
       secretName: argocd-secret # do not change, this is provided by Argo CD
