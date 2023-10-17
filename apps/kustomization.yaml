@@ -8,7 +8,7 @@ resources:
   # - app-root.yaml
   - app-kubernetes-dashboard.yaml
   - app-argo-cd.yaml
-  - app-prometheus.yaml
+  # - app-prometheus.yaml
   # - ingress-k8s-dashboard.yaml
   # - ingress-argo-cd.yaml
   - dashboard-admin.yaml
