@@ -38,16 +38,6 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-    - host: argocd.bdx0.io.vn
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: argo-cd-argocd-server
-                port:
-                  name: https
     - host: argocd.ddbt.duckdns.org
       http:
         paths:
@@ -60,6 +50,5 @@ spec:
                   name: https
   tls:
     - hosts:
-        - argocd.bdx0.io.vn
         - argocd.ddbt.duckdns.org
       secretName: argocd-secret # do not change, this is provided by Argo CD

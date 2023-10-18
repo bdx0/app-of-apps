@@ -18,26 +18,6 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-    - host: k8s.lina.home.local
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: kubernetes-dashboard
-                port:
-                  name: https
-    - host: k8s.bdx0.io.vn
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: kubernetes-dashboard
-                port:
-                  name: https
     - host: k8s.ddbt.duckdns.org
       http:
         paths:
@@ -50,7 +30,5 @@ spec:
                   name: https
   tls:
     - hosts:
-        - k8s.lina.home.local
-        - k8s.bdx0.io.vn
         - k8s.ddbt.duckdns.org
       secretName: k8s-dashboard-secret # do not change, this is provided by Argo CD

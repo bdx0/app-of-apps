@@ -45,6 +45,7 @@ metadata:
   namespace: argocd
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: "nginx"
     kubernetes.io/tls-acme: "true"
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
@@ -55,27 +56,6 @@ metadata:
 spec:
   ingressClassName: "nginx"
   rules:
-    - host: dev.lina.home.local
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: proxy-service
-                port:
-                  number: 80
-
-    - host: dev.bdx0.io.vn
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: proxy-service
-                port:
-                  number: 80
     - host: dev.ddbt.duckdns.org
       http:
         paths:
@@ -88,7 +68,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - dev.lina.home.local
-        - dev.bdx0.io.vn
         - dev.ddbt.duckdns.org
       secretName: devvm-secret # do not change, this is provided by Argo CD
