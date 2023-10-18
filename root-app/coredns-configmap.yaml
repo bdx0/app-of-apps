@@ -1,0 +1,46 @@
+# https://www.cloudnativeviet.net/post/2021/03/29/cach-xu-ly-query-coredns/
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns
+  namespace: kube-system
+data:
+  Corefile: |
+    .:53 {
+        template ANY AAAA {
+          rcode NOERROR
+        }
+        errors
+        log
+        health
+        ready
+        kubernetes cluster.local in-addr.arpa {
+          pods insecure
+          fallthrough in-addr.arpa
+        }
+        hosts /etc/coredns/NodeHosts {
+          ttl 60
+          reload 15s
+          fallthrough
+        }
+        prometheus :9153
+        # file /etc/coredns/cluster.db cluster.local
+        forward . /etc/resolv.conf
+        cache 30
+        loop
+        reload
+        loadbalance
+        import /etc/coredns/custom/*.override
+        log . "{remote} {type} {name} {class} {size} {rcode} {duration}"
+    }
+    import /etc/coredns/custom/*.server
+  cluster.db: |
+    cluster.local.               IN      SOA     ns.dns.cluster.local. hostmaster.cluster.local. 2015082541 7200 3600 1209600 3600
+    something.cluster.local.     IN      A       10.0.0.1
+    otherthing.cluster.local.    IN      CNAME   google.com.
+  NodeHosts: |
+    192.168.122.140 kuber2
+    192.168.122.238 kuber1
+    192.168.122.3 kuber3
+    192.168.122.249 kuber4
+    192.168.122.203 kuber5
